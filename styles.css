@@ -33,8 +33,166 @@ body {
 
 .blurred {
     filter: blur(5px);
+    transition: filter 0.3s ease;
 }
 
 h1 {
     margin-top: 20px;
+}
+
+.content-wrapper {
+    position: relative; /* Needed for absolute positioning of the box */
+    height: 100vh;
+    padding: 20px; /* Adds space around the content */
+    box-sizing: border-box;
+}
+
+/* Existing CSS remains unchanged */
+.box {
+    background-image: url('background.png'); /* Path to your background image */
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px; /* Rounded edges */
+    color: white;
+    width: 90%;
+    height: 70%; /* Set a height relative to the parent container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow for better appearance */
+    padding: 30px; /* Adjust padding as needed */
+    box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    position: relative; /* Allows positioning of bubbles inside the box */
+    transition: height 0.5s ease, opacity 0.5s ease; /* Smooth transitions */
+}
+
+/* Bubble styling */
+.bubble {
+    position: absolute; /* Positioning relative to .box */
+    border-radius: 50%; /* Make the element a circle */
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    display: flex; /* Center text inside bubble */
+    align-items: center;
+    justify-content: center;
+    z-index: 10; /* High z-index to appear above other content */
+    color: black; /* Text color inside the bubbles */
+    font-size: 0.8rem; /* Adjust font size as needed */
+    opacity: 1; /* Ensure bubbles are visible initially */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transitions for animation */
+}
+
+/* Bubble sizes and positions */
+.bubble1 {
+    width: 100px;
+    height: 100px;
+    top: 20%;
+    left: 20%;
+}
+
+.bubble2 {
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 60%;
+}
+
+.bubble3 {
+    width: 120px;
+    height: 120px;
+    top: 70%;
+    left: 40%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .bubble1 {
+        width: 80px;
+        height: 80px;
+        top: 25%;
+        left: 15%;
+    }
+
+    .bubble2 {
+        width: 120px;
+        height: 120px;
+        top: 55%;
+        left: 55%;
+    }
+
+    .bubble3 {
+        width: 100px;
+        height: 100px;
+        top: 75%;
+        left: 35%;
+    }
+}
+
+@media (max-width: 768px) {
+    .bubble1 {
+        width: 60px;
+        height: 60px;
+        top: 30%;
+        left: 10%;
+    }
+
+    .bubble2 {
+        width: 90px;
+        height: 90px;
+        top: 60%;
+        left: 50%;
+    }
+
+    .bubble3 {
+        width: 75px;
+        height: 75px;
+        top: 80%;
+        left: 30%;
+    }
+}
+
+@media (max-width: 576px) {
+    .bubble1 {
+        width: 50px;
+        height: 50px;
+        top: 35%;
+        left: 5%;
+    }
+
+    .bubble2 {
+        width: 70px;
+        height: 70px;
+        top: 65%;
+        left: 45%;
+    }
+
+    .bubble3 {
+        width: 60px;
+        height: 60px;
+        top: 85%;
+        left: 25%;
+    }
+}
+
+/* Bubble text styling */
+.bubble span {
+    text-align: center;
+    font-size: 0.8rem; /* Adjust as needed */
+    font-weight: bold;
+}
+
+/* Animation on scroll */
+.bubble.animate {
+    transform: translateY(-10px); /* Example animation effect */
+    opacity: 1; /* Ensure bubbles are visible */
+}
+
+/* Shrinking box on scroll */
+.box.shrink {
+    height: 50%; /* Adjust as needed */
+}
+
+.box.shrink h1 {
+    opacity: 0; /* Fade out the h1 text */
+    transition: opacity 1s ease; /* Smooth transition for opacity */
 }
