@@ -47,25 +47,62 @@ h1 {
     box-sizing: border-box;
 }
 
-/* Existing CSS remains unchanged */
 .box {
-    background-image: url('background.png'); /* Path to your background image */
+    position: relative;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('background.png'); /* Gradient overlay + background image */
     background-size: cover;
     background-position: center;
-    border-radius: 15px; /* Rounded edges */
+    border-radius: 15px;
     color: white;
     width: 90%;
-    height: 70%; /* Set a height relative to the parent container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: add shadow for better appearance */
-    padding: 30px; /* Adjust padding as needed */
-    box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
-    display: flex; /* Use flexbox for centering */
-    flex-direction: column; /* Stack items vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    position: relative; /* Allows positioning of bubbles inside the box */
-    transition: height 0.5s ease, opacity 0.5s ease; /* Smooth transitions */
+    height: 70%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    transition: height 0.5s ease, opacity 0.5s ease;
 }
+
+.quote {
+    text-align: center;
+    color: white;
+    position: relative;
+    z-index: 1;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 90%;
+    font-size: 2rem; /* Set font size */
+    transition: opacity 1s ease, transform 1s ease; /* Smooth transitions */
+}
+
+.underline {
+    display: block;
+    margin: 20px 0;
+    text-decoration: underline;
+    font-size: 1.2rem;
+}
+
+.author {
+    display: block;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.quote.animate {
+    opacity: 0; /* Fade out the quote */
+    transform: translateY(-10px); /* Move up slightly */
+}
+
+/* Responsive typography with Bootstrap */
+.quote strong {
+    line-height: 1.4;
+}
+
 
 /* Bubble styling */
 .bubble {
@@ -245,10 +282,393 @@ h1 {
 
 /* Shrinking box on scroll */
 .box.shrink {
-    height: 50%; /* Adjust as needed */
+    height: 40%; /* Adjust as needed */
 }
 
 .box.shrink h1 {
     opacity: 0; /* Fade out the h1 text */
     transition: opacity 1s ease; /* Smooth transition for opacity */
 }
+
+/* About Me Section Styles */
+/* More specific selector */
+#about {
+    background-color: transparent; /* Adjust as needed */
+    color: white; /* White text color */
+    overflow: hidden; /* Ensure no overflow from children */
+    margin-top: 100px !important; /* Overrides Bootstrap margin */
+    padding-top: 20px; /* Optional: Adds extra space inside the section */
+}
+
+/* Add this to ensure the section is properly spaced */
+body > * {
+    box-sizing: border-box;
+}
+#about h2 {
+    font-size: 3rem; /* Adjust font size as needed */
+    margin-bottom: 20px; /* Space between heading and text */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1s ease; /* Smooth transition */
+}
+
+#about p {
+    font-size: 20px; /* Adjust font size as needed */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1s ease; /* Smooth transition */
+}
+
+#about img {
+    max-width: 100%; /* Ensures image fits within its container */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 15px; /* Adjust this value for rounded corners */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 1s ease; /* Smooth transition */
+}
+
+/* Adjust for smaller image size */
+.about-img-small {
+    width: 80%; /* Or use a specific pixel value like 300px */
+    max-width: 300px; /* Maximum width */
+    height: auto; /* Maintain aspect ratio */
+}
+/* Animation on scroll */
+#about.visible h2,
+#about.visible p,
+#about.visible img {
+    opacity: 1; /* Make elements visible */
+}
+
+/* Animation for sliding in from the left */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animation for sliding in from the right */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Apply animations to the About Me section elements */
+#about.visible .about-img-small {
+    animation: slideInLeft 1.5s ease-out;
+}
+
+#about.visible h2,
+#about.visible p {
+    animation: slideInRight 1.5s ease-out;
+}
+
+/* Space between About Me and Experience */
+/* Experience Section */
+#experience {
+    margin-top: 400px !important;
+    color: white;
+    position: relative;
+    margin-bottom: 400px !important;
+}
+
+/* Center the Experience heading with transition effect */
+#experience h2 {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 40px;
+    color: white;
+    opacity: 0; /* Start as invisible */
+    transform: translateY(-20px); /* Start from above */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Transition effect */
+}
+
+#experience h2.visible {
+    opacity: 1; /* Become visible */
+    transform: translateY(0); /* Move to original position */
+}
+
+/* Slider wrapper to align slider and buttons */
+.experience-slider-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Slider container styles */
+.experience-slider {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden; /* Hide overflow to create slider effect */
+    transition: transform 0.5s ease; /* Smooth slide effect */
+}
+
+/* Experience block styles */
+.experience-block {
+    background-color: #333;
+    color: white;
+    width: 350px;
+    height: 300px; /* Default height */
+    border-radius: 15px;
+    margin: 0 15px; /* Add spacing between blocks */
+    transition: transform 0.5s ease, height 0.5s ease; /* Transition effect */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-shrink: 0; /* Prevent shrinking in the flex container */
+    position: relative;
+}
+
+/* Center block bigger */
+.experience-block.center {
+    height: 350px; /* Larger height for center block */
+}
+
+/* Side blocks smaller */
+.experience-block.left, .experience-block.right {
+    height: 250px; /* Smaller height for side blocks */
+    margin-top: 50px; /* Margin from the top */
+}
+
+/* Style for company and role */
+.company-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.role-name {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Style for project details on hover */
+.project-details {
+    font-size: 1rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show project details on hover */
+.experience-block:hover .project-details {
+    opacity: 1;
+}
+
+.experience-block:hover .company-name,
+.experience-block:hover .role-name {
+    opacity: 0;
+}
+
+/* Slider buttons */
+.slider-btn {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0 20px;
+    transition: color 0.3s ease;
+}
+
+.slider-btn:hover {
+    color: #007bff; /* Bootstrap primary color */
+}
+
+.slider-btn:focus {
+    outline: none;
+}
+
+/* Disable button while sliding */
+.slider-btn.disabled {
+    cursor: not-allowed;
+    color: gray;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .experience-block {
+        width: 300px;
+        height: 250px;
+        margin: 0 auto; /* Center block */
+    }
+
+    .company-name {
+        font-size: 1.3rem;
+    }
+
+    .role-name {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .experience-block {
+        width: 250px;
+        height: 300px; /* Increased height for smaller devices */
+        margin: 0 auto; /* Center block */
+    }
+
+    .company-name {
+        font-size: 1.2rem;
+    }
+
+    .role-name {
+        font-size: 0.9rem;
+    }
+
+    /* Hide side blocks in smaller devices */
+    .experience-block.left, .experience-block.right {
+        display: none;
+    }
+
+    /* Show only one block in smaller devices */
+    .experience-slider {
+        display: flex;
+        justify-content: center;
+    }
+
+    .experience-block.center {
+        width: 100%; /* Full width */
+        height: auto; /* Auto height */
+        margin: 0; /* Remove margin */
+    }
+}
+
+/* Never Give Up Section */
+#never-give-up {
+    background-color: transparent;
+    color: white;
+    position: relative;
+    padding: 50px 0; /* Adjust padding as needed */
+    text-align: center;
+    margin-bottom: 500px; /* Add margin-bottom for spacing */
+}
+
+#never-give-up .text {
+    opacity: 0;
+    transition: opacity 1s ease;
+    font-size: 3.5rem;
+    text-shadow: -6px -6px 4px rgb(236 229 229 / 50%);
+}
+
+#never-give-up .text.visible {
+    opacity: 1; /* Visible state */
+}
+
+/* Transition effects for individual text pieces */
+#never-give-up .text:nth-of-type(1) {
+    transition-delay: 0s; /* No delay for first text */
+}
+
+#never-give-up .text:nth-of-type(2) {
+    transition-delay: 0.5s; /* Delay for second text */
+}
+
+#never-give-up .text:nth-of-type(3) {
+    transition-delay: 1s; /* Delay for third text */
+}
+
+.text {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.text.visible {
+    opacity: 1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow effect for visible text */
+}
+
+/* panel styles */
+.project {
+    /* min height incase content is higher than window height */
+    min-height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    /*align-items: center;*/
+    /* outline: 10px solid hotpink; */
+    /* turn above on to see the edge of panels */
+  }
+
+  .color-white {
+    background-color: #f4f4f4;
+    color: black;
+  }
+
+ body {
+    overflow-y: scroll; /* Ensure scrollbar is always visible */
+    transition: background-color 1.5s ease;
+}
+
+/* Table layout without borders */
+.table-layout {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto; /* Center the table within the container */
+}
+
+.table-layout td {
+    border: none;
+    vertical-align: top;
+}
+
+/* Specific adjustments for the project layout */
+.project h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.project .btn {
+    margin-top: 1rem;
+}
+
+.project img {
+    width: 80%; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 25px;
+}
+
+/* Empty row for spacing between title and content */
+.empty-space {
+    height: 50px; /* Adjust height for the empty row as needed */
+}
+
+/* Adjust padding for table cells */
+.custom-col {
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 50%; /* Ensure equal width for both columns */
+}
+
+.project-row {
+    display: none;
+}
+
+.project-row:first-child {
+    display: table-row;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+
+
+
+
+  
