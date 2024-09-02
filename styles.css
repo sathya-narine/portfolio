@@ -312,7 +312,7 @@ body > * {
 }
 
 #about p {
-    font-size: 20px; /* Adjust font size as needed */
+    font-size: 17px; /* Adjust font size as needed */
     opacity: 0; /* Initially hidden */
     transition: opacity 1s ease; /* Smooth transition */
     text-align: justify; /* Justify the text */
@@ -421,8 +421,8 @@ body > * {
 .experience-block {
     background-color: #333;
     color: white;
-    width: 350px;
-    height: 300px; /* Default height */
+    width: 400px; /* Increased width */
+    height: 350px; /* Default height */
     border-radius: 15px;
     margin: 0 15px; /* Add spacing between blocks */
     transition: transform 0.5s ease, height 0.5s ease; /* Transition effect */
@@ -433,16 +433,17 @@ body > * {
     text-align: center;
     flex-shrink: 0; /* Prevent shrinking in the flex container */
     position: relative;
+    padding: 20px; /* Added padding */
 }
 
 /* Center block bigger */
 .experience-block.center {
-    height: 400px; /* Larger height for center block */
+    height: 450px; /* Larger height for center block */
 }
 
 /* Side blocks smaller */
 .experience-block.left, .experience-block.right {
-    height: 350px; /* Smaller height for side blocks */
+    height: 400px; /* Smaller height for side blocks */
     margin-top: 50px; /* Margin from the top */
 }
 
@@ -451,18 +452,25 @@ body > * {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 10px;
+    transition: opacity 0.3s ease;
 }
 
 .role-name {
     font-size: 1.2rem;
     margin-bottom: 20px;
+    transition: opacity 0.3s ease;
 }
 
-/* Style for project details on hover */
+/* Style for project details */
 .project-details {
     font-size: 1rem;
     opacity: 0;
     transition: opacity 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px; /* Added padding to ensure text doesn't touch edges */
 }
 
 /* Show project details on hover */
@@ -503,9 +511,10 @@ body > * {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .experience-block {
-        width: 300px;
-        height: 250px;
+        width: 350px; /* Increased width */
+        height: 300px;
         margin: 0 auto; /* Center block */
+        padding: 15px; /* Reduced padding for smaller screens */
     }
 
     .company-name {
@@ -515,13 +524,18 @@ body > * {
     .role-name {
         font-size: 1rem;
     }
+
+    .project-details {
+        font-size: 0.9rem; /* Reduced font size */
+    }
 }
 
 @media (max-width: 576px) {
     .experience-block {
-        width: 250px;
-        height: 300px; /* Increased height for smaller devices */
+        width: 300px; /* Increased width */
+        height: 350px; /* Increased height for smaller devices */
         margin: 0 auto; /* Center block */
+        padding: 10px; /* Further reduced padding for smaller screens */
     }
 
     .company-name {
@@ -530,6 +544,10 @@ body > * {
 
     .role-name {
         font-size: 0.9rem;
+    }
+
+    .project-details {
+        font-size: 0.8rem; /* Further reduced font size */
     }
 
     /* Hide side blocks in smaller devices */
@@ -549,6 +567,7 @@ body > * {
         margin: 0; /* Remove margin */
     }
 }
+
 
 /* Never Give Up Section */
 #never-give-up {
@@ -595,42 +614,43 @@ body > * {
 }
 
 /* panel styles */
+/* Project Section */
 .project {
-    /* min height incase content is higher than window height */
     margin-bottom: 150px !important;
     min-height: 100vh;
     display: flex;
     justify-content: space-around;
-    /*align-items: center;*/
-    /* outline: 10px solid hotpink; */
-    /* turn above on to see the edge of panels */
-  }
+}
 
-  .color-white {
+/* Light background for the project section */
+.color-white {
     background-color: #f4f4f4;
     color: black;
-  }
+}
 
- body {
-    overflow-y: scroll; /* Ensure scrollbar is always visible */
+/* Ensuring scrollbar is always visible */
+body {
+    overflow-y: scroll;
     transition: background-color 1.5s ease;
 }
 
+/* Parallax container setup */
 .parallax-container {
     height: 400px;
     position: relative;
     overflow: hidden;
 }
 
+/* Improved parallax image styles */
 .parallax-image {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    background-size: auto; /* Ensures the image covers the div */
+    background-position: center center; /* Centers the image */
+    background-attachment: fixed; /* Fixes the image for parallax effect */
     z-index: -1;
 }
 
@@ -654,39 +674,51 @@ body > * {
     background-image: url('images/node.png');
 }
 
+/* Project title styling */
 .proj_title {
     margin-bottom: 200px;
     font-size: 3.5rem;
 }
 
+/* Project name styling */
 .proj_name {
     margin-bottom: 20px;
 }
 
+/* Content margin */
 .content {
     margin: 20px 0;
 }
 
+/* Adjusting column heights to match image container */
 .row .col-md-6 {
-    min-height: 400px; /* Ensures the height matches the image container */
+    min-height: 400px;
 }
 
 @media (max-width: 768px) {
     .parallax-container {
         height: 200px;
     }
+
     .row .col-md-6 {
         min-height: 200px; /* Adjust for mobile */
     }
 }
 
+/* Button styling */
 .btn-primary {
-    background-color: #000 !important; /* Black background */
-    color: #fff !important; /* White text */
-    padding: 0.25rem 0.5rem; /* Smaller padding */
-    font-size: 0.875rem; /* Smaller font size */
-    width: 35%; /* Make the width auto so it doesn't take up too much space */
-    margin: 0 auto; /* Center the button */
+    margin: 0 auto 30px;
+    background-color: #000 !important;
+    color: #fff !important;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    width: 35%;
+}
+
+/* Project description styling */
+.proj_descr {
+    text-align: justify;
+    font-size: 17px;
 }
 
 /* Reach Out Section */
