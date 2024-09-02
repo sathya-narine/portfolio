@@ -49,7 +49,7 @@ h1 {
 
 .box {
     position: relative;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('background.png'); /* Gradient overlay + background image */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('images/background.png'); /* Gradient overlay + background image */
     background-size: cover;
     background-position: center;
     border-radius: 15px;
@@ -315,6 +315,7 @@ body > * {
     font-size: 20px; /* Adjust font size as needed */
     opacity: 0; /* Initially hidden */
     transition: opacity 1s ease; /* Smooth transition */
+    text-align: justify; /* Justify the text */
 }
 
 #about img {
@@ -436,12 +437,12 @@ body > * {
 
 /* Center block bigger */
 .experience-block.center {
-    height: 350px; /* Larger height for center block */
+    height: 400px; /* Larger height for center block */
 }
 
 /* Side blocks smaller */
 .experience-block.left, .experience-block.right {
-    height: 250px; /* Smaller height for side blocks */
+    height: 350px; /* Smaller height for side blocks */
     margin-top: 50px; /* Margin from the top */
 }
 
@@ -596,6 +597,7 @@ body > * {
 /* panel styles */
 .project {
     /* min height incase content is higher than window height */
+    margin-bottom: 150px !important;
     min-height: 100vh;
     display: flex;
     justify-content: space-around;
@@ -614,61 +616,163 @@ body > * {
     transition: background-color 1.5s ease;
 }
 
-/* Table layout without borders */
-.table-layout {
+.parallax-container {
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+}
+
+.parallax-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: -1;
+}
+
+.rounded-image {
+    border-radius: 15px;
+}
+
+.proj_image1 {
+    background-image: url('images/lane_detect.png');
+}
+
+.proj_image2 {
+    background-image: url('images/chatbot.png');
+}
+
+.proj_image3 {
+    background-image: url('images/pref.png');
+}
+
+.proj_image4 {
+    background-image: url('images/node.png');
+}
+
+.proj_title {
+    margin-bottom: 200px;
+    font-size: 3.5rem;
+}
+
+.proj_name {
+    margin-bottom: 20px;
+}
+
+.content {
+    margin: 20px 0;
+}
+
+.row .col-md-6 {
+    min-height: 400px; /* Ensures the height matches the image container */
+}
+
+@media (max-width: 768px) {
+    .parallax-container {
+        height: 200px;
+    }
+    .row .col-md-6 {
+        min-height: 200px; /* Adjust for mobile */
+    }
+}
+
+.btn-primary {
+    background-color: #000 !important; /* Black background */
+    color: #fff !important; /* White text */
+    padding: 0.25rem 0.5rem; /* Smaller padding */
+    font-size: 0.875rem; /* Smaller font size */
+    width: 35%; /* Make the width auto so it doesn't take up too much space */
+    margin: 0 auto; /* Center the button */
+}
+
+/* Reach Out Section */
+.reachout-title {
+    font-size: 3rem;
+    margin-bottom: 5rem !important;
+    color: #708090;
+}
+
+.reachout-box {
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    margin-bottom: 2rem; /* Add space between boxes */
+}
+
+.reachout-box h3 {
+    margin-bottom: 10px;
+}
+
+.image-container {
     width: 100%;
-    border-collapse: collapse;
-    margin: 0 auto; /* Center the table within the container */
+    height: auto;
+    overflow: hidden;
 }
 
-.table-layout td {
-    border: none;
-    vertical-align: top;
+.preview-image {
+    width: 100%;
+    height: 300px; /* Set a fixed height for both images */
+    object-fit: cover; /* Ensure the images cover the container */
+    border-radius: 8px;
 }
 
-/* Specific adjustments for the project layout */
-.project h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+.reachout-box .btn-primary {
+    margin-top: 10px;
+    margin-bottom: 10px; /* Add margin-bottom to align buttons */
 }
 
-.project .btn {
-    margin-top: 1rem;
+/* General styles for Reach Out section */
+#reachout .btn-link {
+    margin: 0 10px;
 }
 
-.project img {
-    width: 80%; /* Adjust the width as needed */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: 25px;
+/* Connect with me on */
+.connect-container h3 {
+    margin-bottom: 1rem;
+    text-align: center; /* Center the h3 */
+    color:#708090;
 }
 
-/* Empty row for spacing between title and content */
-.empty-space {
-    height: 50px; /* Adjust height for the empty row as needed */
+.icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Add space between icons */
 }
 
-/* Adjust padding for table cells */
-.custom-col {
-    padding-right: 15px;
-    padding-left: 15px;
-    width: 50%; /* Ensure equal width for both columns */
+.icon-container a {
+    color:#0F52BA;
+    font-size: 2rem; /* Increase the size of the icons */
+    text-decoration: none; /* Remove underline */
 }
 
-.project-row {
-    display: none;
+.icon-container a:hover {
+    color: darkgrey; /* Change color on hover */
 }
 
-.project-row:first-child {
-    display: table-row;
+.icon-container i {
+    font-size: 3rem; /* Increase the size of the icons */
+}
+#reachout .my-5 {
+    margin-top: 3rem; /* Increase space above connect section */
+    margin-bottom: 3rem; /* Increase space below connect section */
+}
+
+/* Footer */
+footer {
+    margin-top: 5rem; /* Increase space between reachout section and footer */
+    position: relative;
+    z-index: 1; /* Ensure it is on top of other content */
+    background: #f8f9fa; /* Ensure background color is consistent */
+    box-shadow: 0 -10px 10px -10px rgba(0, 0, 0, 0.5); /* Add shadow effect at the top */
 }
 
 html {
     scroll-behavior: smooth;
-}
-
-
-
-
-
-
-  
+  }
